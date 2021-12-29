@@ -1,7 +1,7 @@
 package com.zyknafein.roleplaycharactereditor.models.enums;
 
 public enum RankEnum {
-    Civil("Civil"),
+    CIVIL("Civil"),
     LOUVETEAU("Louveteau"),
     LOUP("Loup"),
     LOUPAGUERRI("Loup aguerri"),

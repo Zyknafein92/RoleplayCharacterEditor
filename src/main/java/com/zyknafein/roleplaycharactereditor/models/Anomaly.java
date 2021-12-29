@@ -2,15 +2,26 @@ package com.zyknafein.roleplaycharactereditor.models;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class Anomaly {
-    String name;
-    String description;
-    List<Bonus> bonusList;
-    List<Malus> malusList;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
+    private String description;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Bonus> bonusList;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Malus> malusList;
 }

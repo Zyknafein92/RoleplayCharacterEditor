@@ -2,6 +2,7 @@ package com.zyknafein.roleplaycharactereditor.models;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -9,8 +10,16 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class User {
-    String name;
-    String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
+    private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Character> characters;
 }

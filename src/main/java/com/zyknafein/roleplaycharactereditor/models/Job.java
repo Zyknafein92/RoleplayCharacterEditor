@@ -1,32 +1,27 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
-import com.zyknafein.roleplaycharactereditor.models.enums.JobEnum;
+import com.zyknafein.roleplaycharactereditor.models.skill.Skill;
 import lombok.*;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class Job {
-    private JobEnum name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String name;
+
     private Integer skillModifier = 1;
-    private String classModifier;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Bonus> bonusList;
 
-    private Job initJobModifier(JobEnum name) {
-        if(name == JobEnum.SOLDAT ) {
-           classModifier = "Soldier";
-        } else if (name == JobEnum.CHASSEUR) {
-            classModifier = "Hunter";
-        } else if (name == JobEnum.ASSASSIN) {
-            classModifier= "RogueSkill";
-        } else if (name == JobEnum.MAGE) {
-            classModifier = "MagicSkill";
-        } else if (name == JobEnum.SCIENTIFIQUE) {
-            classModifier = "ScientificSkill";
-        } else if (name == JobEnum.ARTISAN) {
-            classModifier = "ArtisanalSkill";
-        }
-        return new Job(name,skillModifier,classModifier);
-    }
 }
