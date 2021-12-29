@@ -1,16 +1,13 @@
-package com.zyknafein.roleplaycharactereditor.models;
+package com.zyknafein.roleplaycharactereditor.services.dto;
 
-
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.Map;
 
 @Data
-@AllArgsConstructor
 @Builder
-@NoArgsConstructor
-public class StatsPoint {
-
+public class StatsPointDTO {
     Integer availableStatsPoints;
     Map<String,Integer> Strength;
     Map<String,Integer> Dexterity;
@@ -18,5 +15,4 @@ public class StatsPoint {
     Map<String,Integer> Intelligence;
     Map<String,Integer> Wisdom;
     Map<String,Integer> Charisma;
-
 }

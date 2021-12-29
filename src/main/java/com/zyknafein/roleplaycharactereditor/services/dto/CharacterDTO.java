@@ -1,15 +1,15 @@
-package com.zyknafein.roleplaycharactereditor.models;
+package com.zyknafein.roleplaycharactereditor.services.dto;
 
+import com.zyknafein.roleplaycharactereditor.models.*;
 import com.zyknafein.roleplaycharactereditor.models.skill.Skill;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class Character {
+public class CharacterDTO {
     String fullName;
     String nickName;
     Age age;

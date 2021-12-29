@@ -1,11 +1,11 @@
-package com.zyknafein.roleplaycharactereditor.models;
+package com.zyknafein.roleplaycharactereditor.services.dto;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
-@NoArgsConstructor
 @Builder
-public class Experience {
+public class ExperienceDTO {
     Integer xpAvailable;
     Integer xpLeft;
     Integer xpAnimationGain;

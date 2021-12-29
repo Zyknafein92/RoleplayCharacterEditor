@@ -1,15 +1,12 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
 import com.zyknafein.roleplaycharactereditor.models.enums.JobEnum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Job {
     private JobEnum name;
     private Integer skillModifier = 1;

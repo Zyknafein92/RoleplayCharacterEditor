@@ -1,14 +1,11 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Age {
     Integer characterOld;
     Integer statsModifier;

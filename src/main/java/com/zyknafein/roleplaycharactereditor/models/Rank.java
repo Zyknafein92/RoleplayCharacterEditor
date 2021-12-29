@@ -1,13 +1,10 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
 import com.zyknafein.roleplaycharactereditor.models.enums.RankEnum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rank {
