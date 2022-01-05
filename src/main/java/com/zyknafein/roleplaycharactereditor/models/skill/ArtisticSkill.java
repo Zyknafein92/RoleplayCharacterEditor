@@ -1,33 +1,37 @@
 package com.zyknafein.roleplaycharactereditor.models.skill;
 
+
 import com.zyknafein.roleplaycharactereditor.models.Bonus;
 import com.zyknafein.roleplaycharactereditor.models.Malus;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Entity
 public class ArtisticSkill extends Skill {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
-    public ArtisticSkill(String name, String type, String statName, List<Bonus> bonusList, List<Malus> malusList, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, Integer id) {
-        super(name, type, statName, bonusList, malusList, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber);
-        this.id = id;
+    public ArtisticSkill(Integer id, Integer characterId, String name, String type, String statName, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, List<Bonus> bonusList, List<Malus> malusList) {
+        super(id, characterId, name, type, statName, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber, bonusList, malusList);
     }
 
-    @Override
-    public void initSkill() {
-
+    public List<ArtisticSkill> initSkillList(Integer characterID) {
+        List<ArtisticSkill> artisticSkillList = new ArrayList<>();
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Répertoire musical", "Troubadour", "FOC", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Chant", "Troubadour", "CON", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Musicien", "Troubadour", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Danse", "Troubadour", "CON", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Poésie", "Troubadour", "INT", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Peinture / Dessin", "Artiste", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Equilibriste", "Artiste", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Jonglage", "Artiste", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Broderie", "Artiste", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        artisticSkillList.add(new ArtisticSkill(getId(),characterID,"Sculpture", "Artiste", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        return artisticSkillList;
     }
 }

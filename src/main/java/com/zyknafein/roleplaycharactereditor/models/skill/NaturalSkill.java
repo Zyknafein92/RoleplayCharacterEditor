@@ -5,30 +5,27 @@ import com.zyknafein.roleplaycharactereditor.models.Malus;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Entity
 public class NaturalSkill extends Skill {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    public NaturalSkill(String name, String type, String statName, List<Bonus> bonusList, List<Malus> malusList, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, Integer id) {
-        super(name, type, statName, bonusList, malusList, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber);
-        this.id = id;
+    public NaturalSkill(Integer id, Integer characterId, String name, String type, String statName, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, List<Bonus> bonusList, List<Malus> malusList) {
+        super(id, characterId, name, type, statName, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber, bonusList, malusList);
     }
 
-    @Override
-    public void initSkill() {
-
+    public List<NaturalSkill> initSkillList(Integer characterId) {
+        List<NaturalSkill> naturalSkillList = new ArrayList<>();
+        naturalSkillList.add(new NaturalSkill(getId(),characterId,"Chasse", "Nature", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        naturalSkillList.add(new NaturalSkill(getId(),characterId,"Pêche", "Nature", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        naturalSkillList.add(new NaturalSkill(getId(),characterId,"Cuisine", "Nature", "FOC", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        naturalSkillList.add(new NaturalSkill(getId(),characterId,"Contact animal", "Nature", "CHA", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        naturalSkillList.add(new NaturalSkill(getId(),characterId,"Survie", "Nature", "CON", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        return naturalSkillList;
     }
 }

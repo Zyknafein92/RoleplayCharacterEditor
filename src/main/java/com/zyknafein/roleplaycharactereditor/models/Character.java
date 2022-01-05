@@ -1,8 +1,6 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
-import com.zyknafein.roleplaycharactereditor.models.skill.ArtisanalSkill;
-import com.zyknafein.roleplaycharactereditor.models.skill.MeleeSkill;
-import com.zyknafein.roleplaycharactereditor.models.skill.Skill;
+import com.zyknafein.roleplaycharactereditor.models.skill.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -44,7 +42,37 @@ public class Character {
     private List<Anomaly> anomalyList;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<ArtisanalSkill> artisanalSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<ArtisticSkill> artisticSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<DefenseSkill> defenseSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<DistantSkill> distantSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<GatheringSkill> gatheringSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<MagicSkill> magicSkillsList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<MeleeSkill> meleeSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<NaturalSkill> naturalSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<RogueSkill> rogueSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<ScientificSkill> scientificSkillList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<SocialSkill> socialSkillList;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Language> languageList;

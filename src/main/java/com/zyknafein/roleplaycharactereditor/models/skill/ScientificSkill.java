@@ -8,27 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Entity
 public class ScientificSkill extends Skill {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    public ScientificSkill(String name, String type, String statName, List<Bonus> bonusList, List<Malus> malusList, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, Integer id) {
-        super(name, type, statName, bonusList, malusList, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber);
-        this.id = id;
+    public ScientificSkill(Integer id, Integer characterId, String name, String type, String statName, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, List<Bonus> bonusList, List<Malus> malusList) {
+        super(id, characterId, name, type, statName, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber, bonusList, malusList);
     }
 
-    @Override
-    public void initSkill() {
+    public List<ScientificSkill> initSkillList(Integer characterId) {
+        List<ScientificSkill> scientificSkillList = new ArrayList<>();
+
+        scientificSkillList.add(new ScientificSkill(getId(), characterId, "Chirurgie", "Médecine", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        scientificSkillList.add(new ScientificSkill(getId(), characterId, "Diagnostic", "Médecine", "FOC", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        scientificSkillList.add(new ScientificSkill(getId(), characterId, "Soins sur animaux", "Médecine", "INT", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        scientificSkillList.add(new ScientificSkill(getId(), characterId, "Soins sur humains", "Médecine", "INT", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+
+        scientificSkillList.add(new ScientificSkill(getId(), characterId, "Potions, onguents de soin", "Alchimie", "INT", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+
+        return scientificSkillList;
 
     }
 }

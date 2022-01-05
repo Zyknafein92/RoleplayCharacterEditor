@@ -27,12 +27,4 @@ public class Experience {
     private Integer xpSpent;
 
     private Integer xpTotal;
-
-    public Experience(Integer xpAvailable, Integer xpLeft, Integer xpAnimationGain, Integer xpSpent, Integer xpTotal) {
-        this.xpAvailable = xpAvailable;
-        this.xpLeft = xpLeft;
-        this.xpAnimationGain = xpAnimationGain;
-        this.xpSpent = xpSpent;
-        this.xpTotal = xpTotal;
-    }
 }

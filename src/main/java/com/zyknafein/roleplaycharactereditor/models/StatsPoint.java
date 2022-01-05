@@ -19,8 +19,7 @@ public class StatsPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
-
     private Integer value;
+    private Integer modifier;
 }

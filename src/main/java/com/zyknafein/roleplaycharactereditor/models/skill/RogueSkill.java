@@ -8,27 +8,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Entity
 public class RogueSkill extends Skill {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    public RogueSkill(String name, String type, String statName, List<Bonus> bonusList, List<Malus> malusList, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, Integer id) {
-        super(name, type, statName, bonusList, malusList, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber);
-        this.id = id;
+    public RogueSkill(Integer id, Integer characterId, String name, String type, String statName, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, List<Bonus> bonusList, List<Malus> malusList) {
+        super(id, characterId, name, type, statName, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber, bonusList, malusList);
     }
 
-    @Override
-    public void initSkill() {
 
+    public List<RogueSkill> initSkillList(Integer characterId) {
+        List<RogueSkill> rogueSkillList = new ArrayList<>();
+
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Crochetage", "Compétence d'action", "DEX", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Poisons & Antidotes", "Compétence d'action", "INT", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Poser/Désarmer les pièges", "Compétence d'action", "DEX", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Acrobatie", "Compétence d'action", "DEX", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Torture", "Compétence d'action", "INT", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Pickpocket", "Compétence d'action", "DEX", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Contrefaçon", "Compétence d'action", "DEX", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Furtivité", "Compétence d'action", "DEX", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Duperie/Comédie/Reconnaissance de mensonges", "Compétences Sociales", "CHA", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Déguisement", "Compétences Sociales", "CHA", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        rogueSkillList.add(new RogueSkill(getId(),characterId,"Pistage", "Compétences Sociales", "INT", 0,0,0,0,0,0,new ArrayList<>(), new ArrayList<>()));
+        return rogueSkillList;
     }
 }

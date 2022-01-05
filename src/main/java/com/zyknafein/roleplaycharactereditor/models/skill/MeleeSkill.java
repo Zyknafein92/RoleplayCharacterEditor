@@ -1,33 +1,45 @@
 package com.zyknafein.roleplaycharactereditor.models.skill;
 
+
 import com.zyknafein.roleplaycharactereditor.models.Bonus;
 import com.zyknafein.roleplaycharactereditor.models.Malus;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class MeleeSkill extends Skill {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
-    public MeleeSkill(String name, String type, String statName, List<Bonus> bonusList, List<Malus> malusList, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, Integer id) {
-        super(name, type, statName, bonusList, malusList, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber);
-        this.id = id;
+    public MeleeSkill(Integer id, Integer characterId, String name, String type, String statName, Integer masteryRank, Integer masteryJob, Integer masteryPoint, Integer masteryBonus, Integer rollBonus, Integer diceNumber, List<Bonus> bonusList, List<Malus> malusList) {
+        super(id, characterId, name, type, statName, masteryRank, masteryJob, masteryPoint, masteryBonus, rollBonus, diceNumber, bonusList, malusList);
     }
 
-    @Override
-    public void initSkill() {
+    public List<MeleeSkill> initSkillList(Integer characterId) {
+        List<MeleeSkill> meleeSkillList = new ArrayList<>();
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Percussion", "Corps à corps", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Lutte", "Corps à corps", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
 
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Lame courte (Poignard, dagues, stylet...)", "Armes légères(1 main)", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Lame (Epée, Sabre…)", "Armes légères(1 main)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Lame (Rapière…)", "Armes légères(1 main)", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Tranchante (Hache, hachoir…)", "Armes légères(1 main)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Contondante (Masse, massue, matraque, gourdin…)", "Armes légères(1 main)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Epées (Espadon, bâtarde…)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Hache (Bardiche….)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Contondantes (Marteau de Lucerne, tetsubo….)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Hast (Vouge, hallebarde…)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Lances longues (Sarisse, pique, lance…)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+
+        meleeSkillList.add(new MeleeSkill(getId(), characterId, "Arme improvisée (Chaise, Tesson de bouteille…)", "Exotique", "DEX", 0,0,0,0,0,0, new ArrayList<>(), new ArrayList<>()));
+
+        return meleeSkillList;
     }
 }
