@@ -1,8 +1,8 @@
 package com.zyknafein.roleplaycharactereditor.controllers;
 
 
+import com.zyknafein.roleplaycharactereditor.services.CharacterDTO;
 import com.zyknafein.roleplaycharactereditor.services.CharacterService;
-import com.zyknafein.roleplaycharactereditor.services.dto.CharacterDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

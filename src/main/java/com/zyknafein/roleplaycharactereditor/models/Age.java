@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Age {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private Integer characterOld;
     private Integer statsModifier;
     private Integer xpModifier;

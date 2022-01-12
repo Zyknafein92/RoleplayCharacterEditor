@@ -12,10 +12,10 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Bonus {
+public class Modifier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 

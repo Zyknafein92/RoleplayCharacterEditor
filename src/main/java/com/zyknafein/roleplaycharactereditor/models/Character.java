@@ -1,6 +1,5 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
-import com.zyknafein.roleplaycharactereditor.models.skill.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,9 +11,10 @@ import java.util.List;
 @Builder
 @Entity
 public class Character {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String fullName;
 
@@ -42,41 +42,14 @@ public class Character {
     private List<Anomaly> anomalyList;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<ArtisanalSkill> artisanalSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<ArtisticSkill> artisticSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<DefenseSkill> defenseSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<DistantSkill> distantSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<GatheringSkill> gatheringSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<MagicSkill> magicSkillsList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<MeleeSkill> meleeSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<NaturalSkill> naturalSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<RogueSkill> rogueSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<ScientificSkill> scientificSkillList;
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<SocialSkill> socialSkillList;
+    private List<Skill> skillList;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Language> languageList;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Knowledge> knowledgeList;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Modifier> modifierList;
 }

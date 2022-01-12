@@ -1,6 +1,5 @@
 package com.zyknafein.roleplaycharactereditor.models;
 
-import com.zyknafein.roleplaycharactereditor.models.skill.Skill;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,13 +14,13 @@ public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 
     private Integer skillModifier = 1;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Bonus> bonusList;
+    private List<Modifier> modifierList;
 
 }

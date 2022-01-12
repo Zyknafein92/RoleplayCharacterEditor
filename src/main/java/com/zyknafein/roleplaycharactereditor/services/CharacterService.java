@@ -1,6 +1,5 @@
 package com.zyknafein.roleplaycharactereditor.services;
 
-import com.zyknafein.roleplaycharactereditor.services.dto.CharacterDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +12,6 @@ public class CharacterService {
     public Character addCharacter(CharacterDTO characterDTO) {
         return null;
     }
-
 
     public Character updateCharacter(CharacterDTO characterDTO) {
         return null;

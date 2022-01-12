@@ -1,9 +1,9 @@
 package com.zyknafein.roleplaycharactereditor.repository;
 
-import com.zyknafein.roleplaycharactereditor.models.Bonus;
+import com.zyknafein.roleplaycharactereditor.models.Modifier;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BonusRepository extends CrudRepository<Bonus,Integer> {
+public interface ModifierRepository extends CrudRepository<Modifier,Long> {
 }

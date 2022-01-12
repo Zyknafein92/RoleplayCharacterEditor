@@ -17,7 +17,7 @@ public class Rank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private RankEnum name;
     private Integer statsModifier;
     private Integer maxModifier;

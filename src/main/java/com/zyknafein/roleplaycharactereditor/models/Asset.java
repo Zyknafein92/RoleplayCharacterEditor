@@ -13,12 +13,12 @@ import java.util.List;
 public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 
     private String description;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Bonus> bonusList;
+    private List<Modifier> modifierList;
 }
