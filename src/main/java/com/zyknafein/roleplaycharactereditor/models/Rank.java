@@ -19,6 +19,7 @@ public class Rank {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private RankEnum name;
+    private Integer xpModifier;
     private Integer statsModifier;
     private Integer maxModifier;
 
@@ -26,25 +27,5 @@ public class Rank {
         this.name = name;
         this.statsModifier = statsModifier;
         this.maxModifier = maxModifier;
-    }
-
-    private Rank initRankValue(RankEnum name) {
-        if (name == RankEnum.CIVIL) {
-            statsModifier = 66;
-            maxModifier = 4;
-        } else if (name == RankEnum.LOUVETEAU) {
-            statsModifier = 69;
-            maxModifier = 5;
-        } else if (name == RankEnum.LOUP) {
-            statsModifier = 72;
-            maxModifier = 6;
-        } else if (name == RankEnum.LOUPAGUERRI) {
-            statsModifier = 74;
-            maxModifier = 6;
-        } else if (name == RankEnum.LOUPVETERAN || name == RankEnum.SERGENT) {
-            statsModifier = 75;
-            maxModifier= 7;
-        }
-        return new Rank(name, statsModifier, maxModifier);
     }
 }

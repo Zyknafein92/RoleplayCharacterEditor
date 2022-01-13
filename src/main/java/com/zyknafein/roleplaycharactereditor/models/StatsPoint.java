@@ -22,4 +22,12 @@ public class StatsPoint {
     private String name;
     private Integer value;
     private Integer modifier;
+    private Integer maxModifier;
+
+    public StatsPoint(String name, Integer value, Integer modifier, Integer maxModifier) {
+        this.name = name;
+        this.value = value;
+        this.modifier = modifier;
+        this.maxModifier = maxModifier;
+    }
 }

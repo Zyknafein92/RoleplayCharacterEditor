@@ -1,8 +1,9 @@
 package com.zyknafein.roleplaycharactereditor.controllers;
 
 
-import com.zyknafein.roleplaycharactereditor.services.CharacterDTO;
-import com.zyknafein.roleplaycharactereditor.services.CharacterService;
+import com.zyknafein.roleplaycharactereditor.dto.CharacterDTO;
+import com.zyknafein.roleplaycharactereditor.models.RoleplayCharacter;
+import com.zyknafein.roleplaycharactereditor.services.RoleplayCharacterService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,28 +19,28 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class CharacterController {
 
-    private final CharacterService characterService;
+    private final RoleplayCharacterService roleplayCharacterService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Character> getCharacter(@PathVariable("id") Integer id) {
-        return new ResponseEntity<>(characterService.getCharacter(id), HttpStatus.OK);
+    public ResponseEntity<RoleplayCharacter> getCharacter(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(roleplayCharacterService.getCharacter(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Character> addCharacter(@Validated @RequestBody CharacterDTO characterDTO) {
-        Character characterToAdd = characterService.addCharacter(characterDTO);
+    public ResponseEntity<RoleplayCharacter> addCharacter(@Validated @RequestBody CharacterDTO characterDTO) {
+        RoleplayCharacter characterToAdd = roleplayCharacterService.addCharacter(characterDTO);
         return new ResponseEntity<>(characterToAdd,HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Character> updateCharacter(@Valid @RequestBody CharacterDTO characterDTO) {
-        Character characterToUpdate = characterService.updateCharacter(characterDTO);
+    public ResponseEntity<RoleplayCharacter> updateCharacter(@Valid @RequestBody CharacterDTO characterDTO) {
+        RoleplayCharacter characterToUpdate = roleplayCharacterService.updateCharacter(characterDTO);
         return new ResponseEntity<>(characterToUpdate, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Integer> deleteCharacter(@PathVariable("id") Integer id) {
-        return new ResponseEntity<>(characterService.deleteCharacter(id), HttpStatus.OK);
+    public ResponseEntity<Long> deleteCharacter(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(roleplayCharacterService.deleteCharacter(id), HttpStatus.OK);
     }
 
 }

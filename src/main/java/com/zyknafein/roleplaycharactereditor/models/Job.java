@@ -15,12 +15,8 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
-    private Integer skillModifier = 1;
-
+    private boolean isValid;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Modifier> modifierList;
-
 }

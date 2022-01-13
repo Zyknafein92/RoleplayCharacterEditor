@@ -1,6 +1,7 @@
 package com.zyknafein.roleplaycharactereditor.repository;
 
 import com.zyknafein.roleplaycharactereditor.models.Skill;
+import com.zyknafein.roleplaycharactereditor.models.StatsPoint;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,14 +17,24 @@ import java.util.List;
 public class DataLoader implements CommandLineRunner {
 
     private final SkillRepository skillRepository;
+    private final StatsPointRepository statsPointRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        initSkillList();
+        initSkillListBDD();
+        initStatsPointsBDD();
+    }
+
+    private void initStatsPointsBDD() {
+        statsPointRepository.save(new StatsPoint("Force",0,0,0));
+        statsPointRepository.save(new StatsPoint("Dexterité",0,0,0));
+        statsPointRepository.save(new StatsPoint("Constitution",0,0,0));
+        statsPointRepository.save(new StatsPoint("Sagesse",0,0,0));
+        statsPointRepository.save(new StatsPoint("Charisme",0,0,0));
     }
 
 
-    public void initSkillList() {
+    public void initSkillListBDD() {
         /*
          Artisanal Skill
          */

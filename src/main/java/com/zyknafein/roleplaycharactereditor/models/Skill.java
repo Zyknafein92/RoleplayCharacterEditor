@@ -39,13 +39,6 @@ public class Skill {
               this.rollBonus = rollBonus;
               this.diceNumber = diceNumber;
        }
-
-
-       /*
-      //todo: A faire : Supprimer les différentes classes skill, ne garder que celle-ci, init dans le Main les skills.
-        */
-
-
 }
 
 

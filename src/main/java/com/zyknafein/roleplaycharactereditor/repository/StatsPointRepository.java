@@ -1,9 +1,10 @@
 package com.zyknafein.roleplaycharactereditor.repository;
 
 import com.zyknafein.roleplaycharactereditor.models.StatsPoint;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StatsPointRepository extends CrudRepository<StatsPoint, Long> {
+public interface StatsPointRepository extends JpaRepository<StatsPoint, Long> {
 }
