@@ -21,7 +21,7 @@ public class RoleplayCharacterService {
     private final StatsPointService statsPointService;
 
     public RoleplayCharacter getCharacter(Long id) {
-        return null;
+        return roleplayCharacterRepository.getById(id);
     }
 
     public RoleplayCharacter addCharacter(CharacterDTO characterDTO) {
@@ -30,21 +30,23 @@ public class RoleplayCharacterService {
         Experience characterExperience = experienceService.initExperience(characterRank, characterAge);
         List<StatsPoint> characterStatsPoints = statsPointService.initStatsPoint(characterRank);
 
-        RoleplayCharacter characterToSave = RoleplayCharacter.builder()
-                .fullName(characterDTO.getFullName())
-                .nickName(characterDTO.getNickName())
-                .age(characterAge)
-                .rank(characterRank)
-                .job(characterDTO.getJob())
-                .experience(characterExperience)
-                .statsPoint(characterStatsPoints)
-                .assetList(new ArrayList<>())
-                .anomalyList(new ArrayList<>())
-                .skillList(new ArrayList<>())
-                .languageList(new ArrayList<>())
-                .knowledgeList(new ArrayList<>())
-                .modifierList(new ArrayList<>())
-                .build();
+//        RoleplayCharacter characterToSave = RoleplayCharacter.builder()
+//                .fullName(characterDTO.getFullName())
+//                .nickName(characterDTO.getNickName())
+//                .age(characterAge)
+//                .rank(characterRank)
+//                .job(characterDTO.getJob())
+//                .experience(characterExperience)
+//                .statsPoint(characterStatsPoints)
+//                .build();
+        RoleplayCharacter characterToSave = new RoleplayCharacter();
+        characterToSave.setFullName(characterDTO.getFullName());
+        characterToSave.setNickName(characterDTO.getNickName());
+        characterToSave.setAge(characterAge);
+        characterToSave.setRank(characterRank);
+        characterToSave.setJob(characterDTO.getJob());
+        characterToSave.setExperience(characterExperience);
+        characterToSave.setStatsPoint(characterStatsPoints);
 
         return roleplayCharacterRepository.save(characterToSave);
     }

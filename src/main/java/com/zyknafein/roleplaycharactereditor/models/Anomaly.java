@@ -3,6 +3,7 @@ package com.zyknafein.roleplaycharactereditor.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,6 +21,6 @@ public class Anomaly {
     private String description;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Modifier> modifierList;
+    private List<Modifier> modifierList = new ArrayList<>();
 
 }

@@ -27,7 +27,7 @@ public class CharacterController {
     }
 
     @PostMapping
-    public ResponseEntity<RoleplayCharacter> addCharacter(@Validated @RequestBody CharacterDTO characterDTO) {
+    public ResponseEntity<RoleplayCharacter> addCharacter(@RequestBody CharacterDTO characterDTO) {
         RoleplayCharacter characterToAdd = roleplayCharacterService.addCharacter(characterDTO);
         return new ResponseEntity<>(characterToAdd,HttpStatus.CREATED);
     }

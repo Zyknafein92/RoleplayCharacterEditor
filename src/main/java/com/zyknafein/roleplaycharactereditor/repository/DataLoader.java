@@ -1,7 +1,9 @@
 package com.zyknafein.roleplaycharactereditor.repository;
 
+import com.zyknafein.roleplaycharactereditor.models.Rank;
 import com.zyknafein.roleplaycharactereditor.models.Skill;
 import com.zyknafein.roleplaycharactereditor.models.StatsPoint;
+import com.zyknafein.roleplaycharactereditor.models.enums.RankEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,11 +20,22 @@ public class DataLoader implements CommandLineRunner {
 
     private final SkillRepository skillRepository;
     private final StatsPointRepository statsPointRepository;
+    private final RankRepository rankRepository;
 
     @Override
     public void run(String... args) throws Exception {
         initSkillListBDD();
         initStatsPointsBDD();
+        initRankListBDD();
+    }
+
+    private void initRankListBDD() {
+        rankRepository.save(new Rank(RankEnum.CIVIL,0,66,4));
+        rankRepository.save(new Rank(RankEnum.LOUVETEAU,20,69,5));
+        rankRepository.save(new Rank(RankEnum.LOUP,35,72,6));
+        rankRepository.save(new Rank(RankEnum.LOUPAGUERRI,50,74,6));
+        rankRepository.save(new Rank(RankEnum.LOUPVETERAN,60,74,6));
+        rankRepository.save(new Rank(RankEnum.SERGENT,75,75,7));
     }
 
     private void initStatsPointsBDD() {
@@ -38,20 +51,20 @@ public class DataLoader implements CommandLineRunner {
         /*
          Artisanal Skill
          */
-        skillRepository.save(new Skill("Artisnal", "Fabrication d'armes à base de bois", "Travail du bois", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal", "Menuiserie", "Travail du bois", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrication d'armes à feu", "Ingénerie", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrication d'armes de siège", "Ingénerie", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Explosifs", "Ingénerie", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Munitions", "Ingénerie", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Outillage divers", "Ingénerie", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrications d'armes à base de métal (Epée, Lance…)", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrications de matériel de défense (Bouclier…)", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrication d'armures", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Outillage divers", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrication d'armures", "Travail du cuir", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Fabrication de vêtements", "Travail du cuir", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisnal","Equipement divers (Sacs, baudriers, etc…)", "Travail du cuir", "DEX", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal", "Fabrication d'armes à base de bois", "Travail du bois", "FOC", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal", "Menuiserie", "Travail du bois", "FOC", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrication d'armes à feu", "Ingénerie", "INT", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrication d'armes de siège", "Ingénerie", "FOR", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Explosifs", "Ingénerie", "INT", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Munitions", "Ingénerie", "INT", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Outillage divers", "Ingénerie", "FOC", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrications d'armes à base de métal (Epée, Lance…)", "Forge", "FOR", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrications de matériel de défense (Bouclier…)", "Forge", "FOR", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrication d'armures", "Forge", "FOR", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Outillage divers", "Forge", "FOR", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrication d'armures", "Travail du cuir", "DEX", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Fabrication de vêtements", "Travail du cuir", "DEX", 0,0,0,0,0,0));
+        skillRepository.save(new Skill("Artisanal","Equipement divers (Sacs, baudriers, etc…)", "Travail du cuir", "DEX", 0,0,0,0,0,0));
 
         /*
          Artistic Skill

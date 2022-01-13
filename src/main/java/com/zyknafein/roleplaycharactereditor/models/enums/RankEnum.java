@@ -1,5 +1,7 @@
 package com.zyknafein.roleplaycharactereditor.models.enums;
 
+import javax.persistence.Enumerated;
+
 public enum RankEnum {
     CIVIL("Civil"),
     LOUVETEAU("Louveteau"),

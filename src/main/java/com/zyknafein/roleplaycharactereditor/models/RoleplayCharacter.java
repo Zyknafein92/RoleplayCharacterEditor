@@ -3,6 +3,7 @@ package com.zyknafein.roleplaycharactereditor.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -33,24 +34,24 @@ public class RoleplayCharacter {
     private Experience experience;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<StatsPoint> statsPoint;
+    private List<StatsPoint> statsPoint = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Asset> assetList;
+    private List<Asset> assetList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Anomaly> anomalyList;
+    private List<Anomaly> anomalyList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Skill> skillList;
+    private List<Skill> skillList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Language> languageList;
+    private List<Language> languageList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Knowledge> knowledgeList;
+    private List<Knowledge> knowledgeList = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<Modifier> modifierList;
+    private List<Modifier> modifierList = new ArrayList<>();
 
 }

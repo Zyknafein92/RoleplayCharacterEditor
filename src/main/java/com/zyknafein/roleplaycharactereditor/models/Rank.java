@@ -3,10 +3,7 @@ package com.zyknafein.roleplaycharactereditor.models;
 import com.zyknafein.roleplaycharactereditor.models.enums.RankEnum;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Builder
@@ -18,13 +15,15 @@ public class Rank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private RankEnum name;
     private Integer xpModifier;
     private Integer statsModifier;
     private Integer maxModifier;
 
-    public Rank(RankEnum name, Integer statsModifier, Integer maxModifier) {
+    public Rank(RankEnum name, Integer xpModifier, Integer statsModifier, Integer maxModifier) {
         this.name = name;
+        this.xpModifier = xpModifier;
         this.statsModifier = statsModifier;
         this.maxModifier = maxModifier;
     }

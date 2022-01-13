@@ -48,8 +48,8 @@ class RankServiceTest {
 
         rankEnum = "Loup veteran";
         rank = rankService.initRankValue(rankEnum);
-        assertEquals(rank.getStatsModifier(), 75);
-        assertEquals(rank.getMaxModifier(), 7);
+        assertEquals(rank.getStatsModifier(), 74);
+        assertEquals(rank.getMaxModifier(), 6);
 
         rankEnum = "Sergent";
         rank = rankService.initRankValue(rankEnum);
