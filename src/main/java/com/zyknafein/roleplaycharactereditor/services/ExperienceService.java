@@ -24,6 +24,7 @@ public class ExperienceService {
                 .xpAvailable(200 + characterAge.getXpModifier() + characterRank.getXpModifier())
                 .xpAnimationGain(0)
                 .xpSpent(0)
+                .xpLeft(200 + characterAge.getXpModifier() + characterRank.getXpModifier())
                 .xpTotal(200 + characterAge.getXpModifier() + characterRank.getXpModifier())
                 .build();
     }

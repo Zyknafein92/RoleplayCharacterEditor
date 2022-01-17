@@ -3,6 +3,7 @@ package com.zyknafein.roleplaycharactereditor.services;
 
 import com.zyknafein.roleplaycharactereditor.dto.CharacterDTO;
 import com.zyknafein.roleplaycharactereditor.models.*;
+import com.zyknafein.roleplaycharactereditor.models.enums.RankEnum;
 import com.zyknafein.roleplaycharactereditor.repository.RoleplayCharacterRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class RoleplayCharacterService {
     private final RankService rankService;
     private final ExperienceService experienceService;
     private final StatsPointService statsPointService;
+    private final SkillService skillService;
 
     public RoleplayCharacter getCharacter(Long id) {
         return roleplayCharacterRepository.getById(id);
@@ -26,10 +28,10 @@ public class RoleplayCharacterService {
 
     public RoleplayCharacter addCharacter(CharacterDTO characterDTO) {
         Age characterAge = ageService.initAgeModifier(characterDTO.getAge());
-        Rank characterRank = rankService.initRankValue(characterDTO.getRank());
+        Rank characterRank = rankService.findRankByName(RankEnum.valueOf(characterDTO.getRank()));
         Experience characterExperience = experienceService.initExperience(characterRank, characterAge);
         List<StatsPoint> characterStatsPoints = statsPointService.initStatsPoint(characterRank);
-
+        List<Skill> characterSkillList = skillService.initSkillForCharacter();
 //        RoleplayCharacter characterToSave = RoleplayCharacter.builder()
 //                .fullName(characterDTO.getFullName())
 //                .nickName(characterDTO.getNickName())
@@ -44,9 +46,9 @@ public class RoleplayCharacterService {
         characterToSave.setNickName(characterDTO.getNickName());
         characterToSave.setAge(characterAge);
         characterToSave.setRank(characterRank);
-        characterToSave.setJob(characterDTO.getJob());
         characterToSave.setExperience(characterExperience);
         characterToSave.setStatsPoint(characterStatsPoints);
+        characterToSave.setSkillList(characterSkillList);
 
         return roleplayCharacterRepository.save(characterToSave);
     }

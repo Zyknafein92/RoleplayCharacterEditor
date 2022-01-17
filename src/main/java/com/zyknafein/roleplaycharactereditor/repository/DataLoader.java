@@ -1,16 +1,10 @@
 package com.zyknafein.roleplaycharactereditor.repository;
 
-import com.zyknafein.roleplaycharactereditor.models.Rank;
-import com.zyknafein.roleplaycharactereditor.models.Skill;
-import com.zyknafein.roleplaycharactereditor.models.StatsPoint;
+import com.zyknafein.roleplaycharactereditor.models.*;
 import com.zyknafein.roleplaycharactereditor.models.enums.RankEnum;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
-    private final SkillRepository skillRepository;
-    private final StatsPointRepository statsPointRepository;
+    private final AnomalyRepository anomalyRepository;
     private final RankRepository rankRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        initSkillListBDD();
-        initStatsPointsBDD();
         initRankListBDD();
+        initAnomalieBDD();
     }
 
     private void initRankListBDD() {
@@ -38,165 +30,216 @@ public class DataLoader implements CommandLineRunner {
         rankRepository.save(new Rank(RankEnum.SERGENT,75,75,7));
     }
 
-    private void initStatsPointsBDD() {
-        statsPointRepository.save(new StatsPoint("Force",0,0,0));
-        statsPointRepository.save(new StatsPoint("Dexterité",0,0,0));
-        statsPointRepository.save(new StatsPoint("Constitution",0,0,0));
-        statsPointRepository.save(new StatsPoint("Sagesse",0,0,0));
-        statsPointRepository.save(new StatsPoint("Charisme",0,0,0));
+    private void initAnomalieBDD() {
+        List<Modifier> modifierList = new ArrayList<>();
+
+        anomalyRepository.save(new Anomaly("Pas encore choisie", "Aucun", null));
+
+        modifierList.add(new Modifier("Duperie",2));
+        anomalyRepository.save(new Anomaly("Acteur Né", "+2 en Duperie", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrication de Potions",2));
+        modifierList.add(new Modifier("Onguents",2));
+        anomalyRepository.save(new Anomaly("Alchimiste", "+2 en Fabrication de Potions & Onguents", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Peinture / Dessin",2));
+        modifierList.add(new Modifier("Equilibriste",2));
+        modifierList.add(new Modifier("Jonglage",2));
+        modifierList.add(new Modifier("Broderie",2));
+        modifierList.add(new Modifier("Sculpture",2));
+        modifierList.add(new Modifier("Danse",2));
+        modifierList.add(new Modifier("Poésie",2));
+        modifierList.add(new Modifier("Musicien",2));
+        modifierList.add(new Modifier("Chant",2));
+        anomalyRepository.save(new Anomaly("Ame d’artiste",
+                "+2 en Peinture/Dessin, Equilibriste, Jonglage, Broderie, Sculpture, Danse, Poésie, Musicien & Chant",
+                modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Esquive",2));
+        anomalyRepository.save(new Anomaly("Anguille", "+2 en Esquive", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrication d'armes à base de bois",2));
+        anomalyRepository.save(new Anomaly("Menuisier(Armes)", "Fabrication d'armes à base de bois (Arcs, etc…)", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Menuiserie",2));
+        anomalyRepository.save(new Anomaly("Menuisier", "+ 2 Menuiserie", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrication d'armes à feu",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'armes à feu", "+ 2 Fabrication d'armes à feu", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrication d'armes de siège",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'armes de siège", "+ 2 Fabrication d'armes de siège", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Explosifs",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'explosifs", "+ 2 Explosifs", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Munitions",2));
+        anomalyRepository.save(new Anomaly("Fabricant de munitions", "+ 2 Munitions", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Outillage divers (Ingénierie)",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'outillage divers (Ingénierie)", "+ 2 Outillage divers", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrications d'armes à base de métal (Epée, Lance…)",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'armes à base de métal (Epée, Lance…)",
+                "+ 2 Fabrications d'armes à base de métal (Epée, Lance…)",
+                modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrications de matériel de défense (Bouclier…)",2));
+        anomalyRepository.save(new Anomaly("Fabricant de matériel de défense (Bouclier…)",
+                "+ 2 Fabrications de matériel de défense (Bouclier…)", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrication d'armures(Métal)",2));
+        anomalyRepository.save(new Anomaly("Fabrication d'armures(Métal)",
+                "+ 2 Fabrication d'armures(métal)", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Outillage divers (Forge)",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'outillage divers (Forge)",
+                "+ 2 Outillage divers (Forge)", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Fabrication d'armures(Cuir)",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'armures(Cuir)",
+                "+ 2 Fabrication d'armures(Cuir)", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Equipement divers (Sacs, baudriers, etc…)",2));
+        anomalyRepository.save(new Anomaly("Fabricant d'équipement divers (Sacs, baudriers, etc…)",
+                "+ 2 Equipement divers (Sacs, baudriers, etc…)", modifierList));
+        modifierList.clear();
+
+
+
+        modifierList.add(new Modifier("Leadership",2));
+        modifierList.add(new Modifier("Intimidation",2));
+        anomalyRepository.save(new Anomaly("Aura dominante", "+2 en Leadership & Intimidation", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Séduction",2));
+        modifierList.add(new Modifier("Intimidation",2));
+        anomalyRepository.save(new Anomaly("Aura perverse", "'+2 en Séduction & Intimidation", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Chasse",2));
+        modifierList.add(new Modifier("Pêche",2));
+        anomalyRepository.save(new Anomaly("Chasseur", "+2 en Chasse & Pêche", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Chirurgie",2));
+        modifierList.add(new Modifier("Diagnostic",2));
+        anomalyRepository.save(new Anomaly("Chirurgien", "+2 en Chirurgie & Diagnostic", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Volonté",2));
+        anomalyRepository.save(new Anomaly("Courageux", "+2 en Volonté", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Soins sur animaux",2));
+        modifierList.add(new Modifier("Soins sur humains",2));
+        modifierList.add(new Modifier("Diagnostic",2));
+        anomalyRepository.save(new Anomaly("Docteur", "+2 en Soins sur animaux, Soins sur humains & Diagnostic", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Soins sur animaux",2));
+        modifierList.add(new Modifier("Contact animal",2));
+        anomalyRepository.save(new Anomaly("Empathie animale", "+2 en Contact animal & Soins sur animaux", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Résistance à la douleur",2));
+        anomalyRepository.save(new Anomaly("Endurci", "+2 en Résistance à la douleur", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Eloquence",2));
+        modifierList.add(new Modifier("Négociation",2));
+        anomalyRepository.save(new Anomaly("Langue d’or", "+2 en Eloquence & Négociation", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Récolte",2));
+        anomalyRepository.save(new Anomaly("Manutentionnaire", "+2 en Récolte", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Blocage",2));
+        anomalyRepository.save(new Anomaly("Mur", "+2 en Blocage", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Pistage",2));
+        anomalyRepository.save(new Anomaly("Prédateur", "+2 en Pistage", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Parade",2));
+        anomalyRepository.save(new Anomaly("Prescient", "+2 en Parade", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Sexe",2));
+        modifierList.add(new Modifier("Séduction",2));
+        anomalyRepository.save(new Anomaly("Sex-symbol", "+2 en Sexe & Séduction", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Survie",2));
+        anomalyRepository.save(new Anomaly("Survivant", "+2 en Survie", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("Survie",2));
+        anomalyRepository.save(new Anomaly("Toque", "+2 en Cuisine", modifierList));
+        modifierList.clear();
+
+        /*
+         Stats Anomalies
+         */
+        modifierList.add(new Modifier("DEX",1,18));
+        anomalyRepository.save(new Anomaly("Agile", "+1 en MOD de DEX & 18 DEX autorisé", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("CHA",1,18));
+        anomalyRepository.save(new Anomaly("Charismatique", "+1 en MOD de CHA & 18 CHA autorisé", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("FOR",1,18));
+        anomalyRepository.save(new Anomaly("Costaud", "+1 en MOD de FOR & 18 FOR autorisé", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("INT",1,18));
+        anomalyRepository.save(new Anomaly("Perspicace", "+1 en MOD de INT & 18 INT autorisé", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("CON",1,18));
+        anomalyRepository.save(new Anomaly("Résistant", "+1 en MOD de CON & 18 CON autorisé", modifierList));
+        modifierList.clear();
+
+        modifierList.add(new Modifier("FOC",1,18));
+        anomalyRepository.save(new Anomaly("Sage", "+1 en MOD de FOC & 18 FOC autorisé", modifierList));
+        modifierList.clear();
+
+        /*
+        Spécials
+         */
+        anomalyRepository.save(new Anomaly("Apprentissage facile", "Le passage de maitrise 1 à 2 coûte un XP de moins.", null));
+
+        anomalyRepository.save(new Anomaly("Chanceux", "Droit de relancer un jet de dés par animation", null));
+
+        anomalyRepository.save(new Anomaly("Objet magique", "Objet magique aux effets positifs à préciser", null));
+
+        anomalyRepository.save(new Anomaly("Multimage", "Une seconde magie mineure autorisée", null));
+
+        anomalyRepository.save(new Anomaly("Polyglotte", "Autorise la connaissance de multiples langues mortes et vivantes", null));
+    }
+
+    private void initAssetBDD() {
+
     }
 
 
-    public void initSkillListBDD() {
-        /*
-         Artisanal Skill
-         */
-        skillRepository.save(new Skill("Artisanal", "Fabrication d'armes à base de bois", "Travail du bois", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal", "Menuiserie", "Travail du bois", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrication d'armes à feu", "Ingénerie", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrication d'armes de siège", "Ingénerie", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Explosifs", "Ingénerie", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Munitions", "Ingénerie", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Outillage divers", "Ingénerie", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrications d'armes à base de métal (Epée, Lance…)", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrications de matériel de défense (Bouclier…)", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrication d'armures", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Outillage divers", "Forge", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrication d'armures", "Travail du cuir", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Fabrication de vêtements", "Travail du cuir", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artisanal","Equipement divers (Sacs, baudriers, etc…)", "Travail du cuir", "DEX", 0,0,0,0,0,0));
-
-        /*
-         Artistic Skill
-         */
-        skillRepository.save(new Skill("Artistic", "Répertoire musical", "Troubadour", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Chant", "Troubadour", "CON", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Musicien", "Troubadour", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Danse", "Troubadour", "CON", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Poésie", "Troubadour", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Peinture / Dessin", "Artiste", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Equilibriste", "Artiste", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Jonglage", "Artiste", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Broderie", "Artiste", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Artistic", "Sculpture", "Artiste", "DEX", 0,0,0,0,0,0));
-
-        /*
-        Defense Skill
-         */
-        skillRepository.save(new Skill("Defense", "Moyenne", "Armures", "CON", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Defense", "Lourde", "Armures", "CON", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Defense", "Esquive", "Autres", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Defense", "Parade", "Autres", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Defense", "Blocage", "Autres", "CON", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Defense", "Résistance à la douleur", "Autres", "CON", 0, 0, 0, 0, 0, 0));
-
-        /*
-        Distant Skill
-         */
-        skillRepository.save(new Skill("Distant", "Armes blanches (Dague, hachette…)", "Armes légères", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Arme à feu (Pistolet…)", "Armes légères", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Arme à traction (Arc court…)", "Armes légères", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Arme à rotation (Fronde…)", "Armes légères", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Arme à feu (Mousquet…)", "Armes lourdes", "DEX", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Arme à traction (Arc long…)", "Armes lourdes", "FOR", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Armes blanches (Lance, javelot…)", "Armes lourdes", "FOR", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Canons, Baliste, etc….", "Armes lourdes", "FOR", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Distant", "Arme improvisée à lancer (Caillou, parapluie…)", "Exotique", "DEX", 0, 0, 0, 0, 0, 0));
-
-        /*
-        Gathering Skill
-         */
-        skillRepository.save(new Skill("Gathering", "Botaniste : Récolte de plantes", "Récolte", "FOC", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Gathering", "Mineur : Récolte de minerais", "Récolte", "FOC", 0, 0, 0, 0, 0, 0));
-        skillRepository.save(new Skill("Gathering", "Arboriculteur : Récolte de bois", "Récolte", "FOC", 0, 0, 0, 0, 0, 0));
-
-        /*
-        Magic Skill
-         */
-        skillRepository.save(new Skill("Magic", "Mage de feu", "Magie de Feu", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Pyromancien", "Magie de Feu", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Divers Feu", "Magie de Feu", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Maitrise des soins", "Magie de Soin", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Maitrise de la protection", "Magie de Soin", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Divers Soins", "Magie de Soin", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Tempête de glace", "Magie de Glace", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Batisseur de glace", "Magie de Glace", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Divers Glace", "Magie de Glace", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Annihilation", "Magie du Néant", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Décrépitude", "Magie du Néant", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Divers Néant", "Magie du Néant", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Druidisme", "Magie de la Nature", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Spores", "Magie de la Nature", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Divers Nature", "Magie de la Nature", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Illusions & Esprit", "Magie académique", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Contre-Magie", "Magie académique", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Magic", "Divers Académique", "Magie académique", "FOC", 0,0,0,0,0,0));
-
-        /*
-        Melee Skill
-         */
-        skillRepository.save(new Skill("Melee", "Percussion", "Corps à corps", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Lutte", "Corps à corps", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Lame courte (Poignard, dagues, stylet...)", "Armes légères(1 main)", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Lame (Epée, Sabre…)", "Armes légères(1 main)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Lame (Rapière…)", "Armes légères(1 main)", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Tranchante (Hache, hachoir…)", "Armes légères(1 main)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Contondante (Masse, massue, matraque, gourdin…)", "Armes légères(1 main)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Epées (Espadon, bâtarde…)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Hache (Bardiche….)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Contondantes (Marteau de Lucerne, tetsubo….)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Hast (Vouge, hallebarde…)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Lances longues (Sarisse, pique, lance…)", "Armes lourdes (2 mains)", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Melee", "Arme improvisée (Chaise, Tesson de bouteille…)", "Exotique", "DEX", 0,0,0,0,0,0));
-
-        /*
-        Natural Skill
-         */
-        skillRepository.save(new Skill("Natural","Chasse", "Nature", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Natural","Pêche", "Nature", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Natural","Cuisine", "Nature", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Natural","Contact animal", "Nature", "CHA", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Natural","Survie", "Nature", "CON", 0,0,0,0,0,0));
-
-        /*
-        Rogue Skill
-         */
-        skillRepository.save(new Skill("Rogue", "Crochetage", "Compétence d'action", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Poisons & Antidotes", "Compétence d'action", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Poser/Désarmer les pièges", "Compétence d'action", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Acrobatie", "Compétence d'action", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Torture", "Compétence d'action", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Pickpocket", "Compétence d'action", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Contrefaçon", "Compétence d'action", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Furtivité", "Compétence d'action", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Duperie/Comédie/Reconnaissance de mensonges", "Compétences Sociales", "CHA", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Déguisement", "Compétences Sociales", "CHA", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Rogue", "Pistage", "Compétences Sociales", "INT", 0,0,0,0,0,0));
-
-        /*
-        Scientific Skill
-         */
-        skillRepository.save(new Skill("Scientific", "Chirurgie", "Médecine", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Scientific", "Diagnostic", "Médecine", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Scientific", "Soins sur animaux", "Médecine", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Scientific", "Soins sur humains", "Médecine", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Scientific", "Potions, onguents de soin", "Alchimie", "INT", 0,0,0,0,0,0));
-
-        /*
-        Social Skill
-         */
-        skillRepository.save(new Skill("Social", "Séduction", "Social", "CHA", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Leadership", "Social", "CHA", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Intimidation", "Social", "FOR", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Analyse comportementale", "Social", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Etiquette", "Social", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Eloquence", "Social", "INT", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Négociation", "Social", "CHA", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Sexe", "Social", "CON", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Volonté", "Social", "FOC", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Equitation", "Transport", "DEX", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Escalade", "Transport", "CON", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Natation", "Transport", "CON", 0,0,0,0,0,0));
-        skillRepository.save(new Skill("Social", "Navigation", "Transport", "FOC", 0,0,0,0,0,0));
-    }
 }

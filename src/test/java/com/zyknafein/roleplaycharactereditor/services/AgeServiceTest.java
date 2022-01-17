@@ -56,6 +56,5 @@ public class AgeServiceTest {
         characterAge = ageService.initAgeModifier(55);
         assertEquals(characterAge.getStatsModifier(), -6);
         assertEquals(characterAge.getXpModifier(), 40);
-
     }
 }

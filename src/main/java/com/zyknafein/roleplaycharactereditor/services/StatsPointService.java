@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,12 @@ public class StatsPointService {
      * @return
      */
     public List<StatsPoint> initStatsPoint(Rank characterRank) {
-        List<StatsPoint> statsPointList = statsPointRepository.findAll();
+        List<StatsPoint> statsPointList = new ArrayList<>();
+        statsPointList.add(new StatsPoint("Force",0,0,0));
+        statsPointList.add( new StatsPoint("Dexterité",0,0,0));
+        statsPointList.add( new StatsPoint("Constitution",0,0,0));
+        statsPointList.add( new StatsPoint("Sagesse",0,0,0));
+        statsPointList.add( new StatsPoint("Charisme",0,0,0));
         statsPointList.forEach(e -> e.setMaxModifier(characterRank.getMaxModifier()));
         return statsPointList;
     }

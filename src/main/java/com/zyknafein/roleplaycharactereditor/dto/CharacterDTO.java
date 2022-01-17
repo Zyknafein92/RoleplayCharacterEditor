@@ -1,6 +1,7 @@
 package com.zyknafein.roleplaycharactereditor.dto;
 
 import com.zyknafein.roleplaycharactereditor.models.*;
+import com.zyknafein.roleplaycharactereditor.models.enums.RankEnum;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,7 +14,6 @@ public class CharacterDTO {
     private String nickName;
     private Integer age;
     private String rank;
-    private Job job;
 //    private Experience experience;
 //    private List<StatsPoint> statsPoint;
 //    private List<Asset> assetList;

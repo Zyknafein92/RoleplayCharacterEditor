@@ -18,4 +18,16 @@ public class Modifier {
     private Long id;
     private String name;
     private Integer value;
+    private Integer maxModifier;
+
+    public Modifier(String name, Integer value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public Modifier(String name, Integer value, Integer maxModifier) {
+        this.name = name;
+        this.value = value;
+        this.maxModifier = maxModifier;
+    }
 }
